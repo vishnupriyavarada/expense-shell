@@ -37,7 +37,7 @@ VALIDATE(){
 
 NODEJS_STATUS=$(dnf list available | grep "nodejs")
     
-if [ ${NODEJS_STATUS} -ne 0 ]
+if [ $? -eq 0 ]
 then
     dnf module disable nodejs -y &>>${LOGFILE}
     VALIDATE $? "Disabling older nodejs"

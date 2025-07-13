@@ -23,6 +23,8 @@ CHEK_ROOT_USER(){
 
 }
 
+CHEK_ROOT_USER
+
 echo "$0 started executing at ${TIME_STAMP}" &>>${LOGFILE}
 
 

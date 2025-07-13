@@ -3,7 +3,7 @@
 USERID=$(id -u)
 
 LOGS_FOLDER="/var/log/expense-logs"
-LOG_FILE= "Test" #$(echo $0 | cut -d "." -f1)
+LOG_FILE=$(echo $0 | cut -d "." -f1)
 TIME_STAMP=$(date '+%Y-%m-%d-%H-%M-%S')
 LOGFILE="${LOGS_FOLDER}/${LOG_FILE}-${TIME_STAMP}.log"
 

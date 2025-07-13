@@ -23,28 +23,27 @@ then
     mkdir -p ${LOGS_FOLDER}
 fi
 
-
-
-
 CHEK_ROOT_USER
 
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
-    echo "ERROR: Installing $2 ... failed" &>>${LOGFILE}
+    echo "ERROR:$2 ... failed" &>>${LOGFILE}
     else
-    echo "Installing $2 ... Success" &>>${LOGFILE}
+    echo "$2 ... Success" &>>${LOGFILE}
     fi
 }
 
 echo "$0 started executing at ${TIME_STAMP}" &>>${LOGFILE}
 
-
-
 dnf install mysql-server -y &>>${LOGFILE}
+VALIDATE $? "mysql Installation" &>>${LOGFILE}
 
-VALIDATE $? "mysql"
+systemctl enable mysqld
+VALIDATE $? "Enabling mysql server " &>>${LOGFILE}
 
+systemctl start mysqld
+VALIDATE $? "Starting mysql server" &>>${LOGFILE}
 
 
 

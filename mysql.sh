@@ -23,6 +23,8 @@ CHEK_ROOT_USER(){
 
 }
 
+CHEK_ROOT_USER
+
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
@@ -34,7 +36,7 @@ VALIDATE(){
 
 echo "$0 started executing at ${TIME_STAMP}" &>>${LOGFILE}
 
-CHEK_ROOT_USER
+
 
 dnf install mysql-server -y &>>${LOGFILE}
 

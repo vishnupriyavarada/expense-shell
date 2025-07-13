@@ -17,7 +17,7 @@ fi
 CHEK_ROOT_USER(){
     if [ ${USERID} !=  0 ]
     then
-        echo "ERROR: You must have sudo/root user access to execute this script" &>>${LOGFILE}
+        echo "ERROR: You must have sudo/root user access to execute this script"
         exit 1 #other than 0
     fi
 

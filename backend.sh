@@ -35,8 +35,8 @@ VALIDATE(){
     fi
 }
 
-NODEJS_STATUS=$(dnf list available | grep nodejs)
-
+NODEJS_STATUS=$(dnf list available | grep "nodejs")
+    
 if [ ${NODEJS_STATUS} == 0 ]
 then
     dnf module disable nodejs -y &>>${LOGFILE}
@@ -55,7 +55,7 @@ fi
 useradd expense
 VALIDATE $? "Adding expense user"
 
-if [ ! -d ${APP_FOLDER}]
+if [ ! -d ${APP_FOLDER} ]
 then
     mkdir -p ${APP_FOLDER}
     VALIDATE $? "Creating app directory"   

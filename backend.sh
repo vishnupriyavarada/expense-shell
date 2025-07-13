@@ -3,20 +3,11 @@
 USERID=$(id -u)
 
 LOGS_FOLDER="/var/log/expense-logs"
-LOGS_FILE=$($0 | cut -d "." -f1)
+LOGS_FILE=$(echo $0 | cut -d "." -f1)
 TIME_STAMP=$(date "+%Y-%m-%d-%H-%M-%S")
 APP_FOLDER="/app"
 
 LOGFILE=${LOGS_FOLDER}/${LOGS_FILE}-${TIME_STAMP}.sh
-
-
-if [ ! -d ${LOGS_FOLDER} ]
-then
-    echo "Log directory does not exist.Creating log directory..."
-    CHEK_ROOT_USER
-    mkdir -p ${LOGS_FOLDER}
-fi
-
 
 CHECK_ROOT_USER(){
     if [ ${USERID} -ne 0 ]
@@ -26,15 +17,21 @@ CHECK_ROOT_USER(){
     fi
 }
 
+if [ ! -d ${LOGS_FOLDER} ]
+then
+    echo "Log directory does not exist.Creating log directory..."
+    CHEK_ROOT_USER
+    mkdir -p ${LOGS_FOLDER}
+fi
 
 CHECK_ROOT_USER
 
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
-        echo ("$2 ... success") >>&${LOGFILE}
+        echo "$2 ... success" >>&${LOGFILE}
     else
-        echo ("$2 ... failed") >>&${LOGFILE}
+        echo "$2 ... failed" >>&${LOGFILE}
     fi
 }
 

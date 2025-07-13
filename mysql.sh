@@ -28,16 +28,16 @@ CHEK_ROOT_USER
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
-    echo "ERROR:$2 ... failed" &>>${LOGFILE}
+    echo "ERROR:$2 ... failed" 
     else
-    echo "$2 ... Success" &>>${LOGFILE}
+    echo "$2 ... Success"
     fi
 }
 
 echo "$0 started executing at ${TIME_STAMP}" &>>${LOGFILE}
 
 dnf install mysql-server -y &>>${LOGFILE}
-VALIDATE $? "mysql Installation" &>>${LOGFILE}
+VALIDATE $? "mysql Installation"
 
 systemctl enable mysqld
 VALIDATE $? "Enabling mysql server "

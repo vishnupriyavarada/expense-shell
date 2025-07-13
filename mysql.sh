@@ -7,10 +7,10 @@ LOG_FILE=$(echo $0 | cut -d "." -f1)
 TIME_STAMP=$(date '+%Y-%m-%d-%H-%M-%S')
 LOGFILE="${LOGS_FOLDER}/${LOG_FILE}-${TIME_STAMP}.log"
 
-if [ ! -d ${LOGFILE} ]
+if [ ! -d ${LOGS_FOLDER} ]
 then
     echo "Log directory does not exist.Creating log directory..."
-    mkdir -p "${LOGS_FOLDER}/${LOG_FILE}"
+    mkdir -p ${LOGS_FOLDER}
 fi
 
 

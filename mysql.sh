@@ -10,7 +10,7 @@ LOGFILE="${LOGS_FOLDER}/${LOG_FILE}-${TIME_STAMP}.log"
 if [ ! -d ${LOGFILE} ]
 then
     echo "Log directory does not exist.Creating log directory..."
-    mkdir -p ${LOGFILE}
+    mkdir -p "${LOGS_FOLDER}/${LOG_FILE}"
 fi
 
 

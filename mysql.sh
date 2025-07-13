@@ -23,9 +23,26 @@ CHEK_ROOT_USER(){
 
 }
 
-CHEK_ROOT_USER
+VALIDATE(){
+    if [ $1 -ne 0 ]
+    then
+    echo "ERROR: Installing $2 ... failed" &>>${LOGFILE}
+    else
+    echo "Installing $2 ... Success" &>>${LOGFILE}
+    fi
+}
 
 echo "$0 started executing at ${TIME_STAMP}" &>>${LOGFILE}
+
+CHEK_ROOT_USER
+
+dnf install mysql-server -y &>>${LOGFILE}
+
+VALIDATE $? "mysql"
+
+
+
+
 
 
 

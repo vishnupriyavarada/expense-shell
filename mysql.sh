@@ -45,7 +45,7 @@ VALIDATE $? "Enabling mysql server "
 systemctl start mysqld
 VALIDATE $? "Starting mysql server" 
 
-mysql -h mysql.vishnudevopsaws.online -u root -pExpenseApp@1 -e 'show databases;'
+mysql -h mysql.vishnudevopsaws.online -u root -pExpenseApp@1 -e 'show databases;' &>>${LOGFILE}
 
 if [ $? -ne 0 ]
 then

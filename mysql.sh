@@ -40,13 +40,23 @@ dnf install mysql-server -y &>>${LOGFILE}
 VALIDATE $? "mysql Installation" &>>${LOGFILE}
 
 systemctl enable mysqld
-VALIDATE $? "Enabling mysql server " &>>${LOGFILE}
+VALIDATE $? "Enabling mysql server "
 
 systemctl start mysqld
-VALIDATE $? "Starting mysql server" &>>${LOGFILE}
+VALIDATE $? "Starting mysql server" 
 
-mysql_secure_installation --set-root-pass ExpenseApp@1
-VALIDATE $? "Set root password" &>>${LOGFILE}
+mysql -h mysql.vishnudevopsaws.online -u root -pExpenseApp@1 -e 'show databases;'
+
+if [ $? -ne 0 ]
+then
+    echo "mysql root password is not set"  &>>${LOGFILE}
+    mysql_secure_installation --set-root-pass ExpenseApp@1
+    VALIDATE $? "Setting root password" 
+else
+    echo "mysql root password is already set. Skipping."
+fi
+
+
 
 
 

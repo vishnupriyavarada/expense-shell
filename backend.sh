@@ -45,7 +45,7 @@ dnf install nodejs -y &>>${LOGFILE}
 VALIDATE $? "Installing nodejs:20" &>>${LOGFILE}
 
 
-useradd expense
+useradd expense &
 VALIDATE $? "Adding expense user"
 
 if [ ! -d ${APP_FOLDER} ]

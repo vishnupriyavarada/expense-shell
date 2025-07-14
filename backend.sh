@@ -35,22 +35,15 @@ VALIDATE(){
     fi
 }
 
-$(dnf list available | grep "nodejs")
-    
-if [ $? -eq 0 ]
-then
-    dnf module disable nodejs -y &>>${LOGFILE}
-    VALIDATE $? "Disabling older nodejs"
+dnf module disable nodejs -y &>>${LOGFILE}
+VALIDATE $? "Disabling older nodejs"
 
-    dnf module enable nodejs:20 -y &>>${LOGFILE}
-    VALIDATE $? "Enabling nodejs:20"
+dnf module enable nodejs:20 -y &>>${LOGFILE}
+VALIDATE $? "Enabling nodejs:20"
 
-    dnf install nodejs -y &>>${LOGFILE}
-    VALIDATE $? "Installing nodejs:20" &>>${LOGFILE}
-else
-    dnf install nodejs -y &>>${LOGFILE}
-    VALIDATE $? "Installing nodejs:20" 
-fi
+dnf install nodejs -y &>>${LOGFILE}
+VALIDATE $? "Installing nodejs:20" &>>${LOGFILE}
+
 
 useradd expense
 VALIDATE $? "Adding expense user"

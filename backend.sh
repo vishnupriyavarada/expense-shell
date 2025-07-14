@@ -20,7 +20,7 @@ CHECK_ROOT_USER(){
 if [ ! -d ${LOGS_FOLDER} ]
 then
     echo "Log directory does not exist.Creating log directory..."
-    CHEK_ROOT_USER
+    CHECK_ROOT_USER
     mkdir -p ${LOGS_FOLDER}
 fi
 
@@ -35,7 +35,7 @@ VALIDATE(){
     fi
 }
 
-NODEJS_STATUS=$(dnf list available | grep "nodejs")
+$(dnf list available | grep "nodejs")
     
 if [ $? -eq 0 ]
 then
